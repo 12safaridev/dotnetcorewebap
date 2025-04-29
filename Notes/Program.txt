@@ -1,0 +1,10 @@
+﻿--> add more problem details 
+builder.Services.AddProblemDetails(options =>
+{
+    //options.IncludeExceptionDetail = (ctx, ex) => true;
+    options.CustomizeProblemDetails = ctx =>
+    {
+        ctx.ProblemDetails.Extensions.Add("Server", Environment.MachineName);
+    };
+});
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
