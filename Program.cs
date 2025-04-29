@@ -1,3 +1,5 @@
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // builder.Services.AddMvc();
+
+builder.Services.AddProblemDetails(options =>
+{
+    //options.IncludeExceptionDetail = (ctx, ex) => true;
+    options.CustomizeProblemDetails = ctx =>
+    {
+        ctx.ProblemDetails.Extensions.Add("Server", Environment.MachineName);
+    };
+});
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
